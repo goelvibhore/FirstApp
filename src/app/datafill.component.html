@@ -1,0 +1,41 @@
+<h2>
+    Welcome to data fill page
+</h2>
+
+<form #form="ngForm">
+    <div>
+        <label>Select template </label>
+        <!--[(ngModel)]="selectedTemplate"-->
+        <select name="selectTemplate" *ngIf="templates && templates.length > 0" [(ngModel)]="selectedTemplate">
+            <!--<option value="" />-->
+            <option *ngFor="let dataTemplate of templates" [ngValue]="dataTemplate">
+                {{dataTemplate.templateName}}
+            </option>
+        </select>
+    </div>
+
+    <br/>
+
+    <div *ngIf="selectedTemplate" [hidden]="selectedTemplate.templateId=='' || selectedTemplate.templateId==''">
+        <label>Title</label>
+        <input type="text" width="100" name="title" [(ngModel)]="dataItems.title" required minlength="5" />
+
+        <div *ngFor="let column of selectedTemplate.columns">
+            <label>{{column.columnName}}</label>
+            <input type="text" width="100" required name="{{ 'Column ' + column.columnId}}" />
+        </div>
+
+        <br/>
+        <button (click)="addValues(form.value)">Add the data</button>
+    </div>
+
+    <br/>
+    <h2>Data entered</h2>
+    <div *ngIf="selectedTemplate">
+        <table *ngIf="selectedTemplate">
+            <th *ngFor="let column of selectedTemplate.columns">
+                {{column.columnName}}
+            </th>
+        </table>
+    </div>
+</form>

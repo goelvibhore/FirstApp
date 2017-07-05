@@ -1,0 +1,49 @@
+<h2>
+    Create Template</h2>
+
+<!--(ngSubmit)="onSubmit(form.value)"-->
+<form #form="ngForm"  >
+    <div>
+        <label>Title</label>
+        <input type="text" width="100" name="title" 
+            [(ngModel)]="template.templateName" required minlength="5"  />
+<!--#title="ngModel"-->
+        <!--<p [hidden]="!title.errors?.required" *ngIf="title.errors?.required && (title.dirty || title.touched)">
+            Title is required
+        </p>
+        <p [hidden]="!title.errors?.minlength" *ngIf="title.errors?.minlength && (title.dirty || title.touched)">
+            Title must be at least 5 characters long.
+        </p>-->
+
+        <!--<div *ngIf="title.errors && (title.dirty || title.touched)">
+        <div [hidden]="!title.errors.required">
+            Title is required
+        </div>
+        <div [hidden]="!title.errors.minlength">
+            Title must be at least 5 characters long.
+        </div>
+    </div>-->
+        <!--<div *ngIf="formErrors.name" class="alert alert-danger">
+            {{ formErrors.name }}
+        </div>-->
+    </div>
+
+    <br/>
+
+    <ul *ngIf="columns">
+        <li *ngFor="let column of template.columns">
+            <label> {{ "Column " + column.columnId}} </label>
+            <input type="text" width="100" [(ngModel)]="column.columnName"
+                     name="{{ 'Column ' + column.columnId}}" required />
+        </li>
+    </ul>
+
+    <br/>
+    <button (click)="addColumn()">Add Column</button>
+    <button (click)="saveTemplate()" [disabled]="!form.valid">Save template</button>
+    <button (click)="resetTemplate()" >Reset template</button>
+
+    <!--<button type="submit" (click)="saveTemplate" [disabled]="!form.valid">Save template</button>-->
+</form>
+
+<!--" -->

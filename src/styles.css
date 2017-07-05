@@ -1,0 +1,10 @@
+body{
+    margin: 2em;
+}
+.anchorMenu{
+    background: grey;
+    text-decoration: none;   
+}
+.bodyChild{
+    background: lightgray
+}
